@@ -1,0 +1,21 @@
+{
+  "session": {
+    "new": false,
+    "sessionId": "session1234",
+    "attributes": {},
+    "user": {
+      "userId": "usr123"
+    },
+    "application": {
+      "applicationId": "amzn1.ask.skill.a5731581-b6d0-47f0-9143-229c57d59ddf"
+    }
+  },
+  "version": "1.0",
+  "request": {
+    "intent": {
+      "name": "GetAmTranSkill"
+    },
+    "type": "IntentRequest",
+    "requestId": "request5678"
+  }
+}

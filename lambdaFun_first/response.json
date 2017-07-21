@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "sessionAttributes": {
+  },
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": "Welcome to Amtran skill."
+    },
+    "card": {
+      "type": "Simple",
+      "title": "AmTran",
+      "content": "Welcome to Amtran skill."
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "Whom you want to ask?"
+      }
+    },
+    "shouldEndSession": false
+  }
+}
