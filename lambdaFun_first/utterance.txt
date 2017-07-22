@@ -1,7 +1,11 @@
-ask amtran skill to speech
-ask amtran skill to say something
-ask amtran skill to talk about AMT PRODUCT
-tell amtran skill to speak about AMT PRODUCT
-ask amtran skill to introduce  AMT PRODUCT
-what is amtran skill AMT PRODUCT
-give me information about amtran skill AMT PRODUCT
+open amtran
+
+ask amtran to speech
+ask amtran to say something
+ask amtran to talk
+tell amtran to speak
+ask amtran to introduce
+
+ask amtran about sound bar
+ask amtran about TV
+ask amtran about speaker

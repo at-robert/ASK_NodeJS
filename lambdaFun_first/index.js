@@ -25,16 +25,8 @@ exports.handler = function(event,context){
         } else if(request.type === "IntentRequest") {
             let options = {};
             if(request.intent.name === "GetAmTranSkill") {
-                 let name =  request.intent.slots.AMT_PRODUCT.value;
-                if( name === "sound bar") {
-                  options.speechText = "Sound bar is a kind of audio product which provide better sound quality for the home theater system";
-                } else if (name === "speaker") {
-                  options.speechText = "Speaker is a kind of portable audio product";
-                } else {
-                  options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future";
-                }
-             
-
+                options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future"; 
+                
                 // get string back URL json file
                 // getQuote(function(quote,err) {
                 //     if(err) {
@@ -49,7 +41,22 @@ exports.handler = function(event,context){
                 options.endSession = true;
                 context.succeed(buildResponse(options));
 
-            } else {
+            } else if(request.intent.name === "AskAmTran") {
+                let name =  request.intent.slots.AMT_PRODUCT.value;
+                if( name === "sound bar") {
+                  options.speechText = "Sound bar is a kind of audio product which provide better sound quality for the home theater system";
+                } else if (name === "speaker") {
+                  options.speechText = "Speaker is a kind of portable audio product";
+                } else if (name === "TV") {
+                  options.speechText = "TV is a kind of display product which can play video signal";
+                } else {
+                  options.speechText = "Unknow Product type";
+                }
+
+                options.endSession = true;
+                context.succeed(buildResponse(options));
+            }
+            else {
                 // context.fail("Unknow intent");
                 throw "Unknow intent";
             }
