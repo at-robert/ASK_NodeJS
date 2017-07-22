@@ -1,5 +1,7 @@
 'use strict';
 
+var http = require('http');
+
 exports.handler = function(event,context){
 
     try{
@@ -23,8 +25,27 @@ exports.handler = function(event,context){
         } else if(request.type === "IntentRequest") {
             let options = {};
             if(request.intent.name === "GetAmTranSkill") {
-                // let name =  request.intent.slots.ActionItem.value;
-                options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future";
+                 let name =  request.intent.slots.AMT_PRODUCT.value;
+                if( name === "sound bar") {
+                  options.speechText = "Sound bar is a kind of audio product which provide better sound quality for the home theater system";
+                } else if (name === "speaker") {
+                  options.speechText = "Speaker is a kind of portable audio product";
+                } else {
+                  options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future";
+                }
+             
+
+                // get string back URL json file
+                // getQuote(function(quote,err) {
+                //     if(err) {
+                //         context.fail(err);
+                //     } else {
+                //         options.speechText += quote;
+                //         options.endSession = true;
+                //         context.succeed(buildResponse(options));
+                //     }
+                // });
+
                 options.endSession = true;
                 context.succeed(buildResponse(options));
 
@@ -83,3 +104,25 @@ function buildResponse(options){
 //         return "Good afternoon. ";
 //     }
 // }
+
+function getQuote(callback){
+    var url = "http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json";
+    var req =  http.get(url, function(res){
+        var body = "";
+
+        res.on('data', function(chunk){
+            body += chunk;
+        });
+    
+        res.on('end', function() {
+            body = body.replace(/\\/g,'');
+            var quote = JSON.parse(body);
+            callback(quote.quoteText);
+        });
+
+    });
+
+    req.on('error', function(err) {
+        callback('',err);
+    });
+}

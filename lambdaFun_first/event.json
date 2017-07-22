@@ -13,6 +13,12 @@
   "version": "1.0",
   "request": {
     "intent": {
+      "slots": {
+        "AMT_PRODUCT": {
+          "name": "AMT_PRODUCT",
+          "value": "sound bar"
+        }
+      },
       "name": "GetAmTranSkill"
     },
     "type": "IntentRequest",
