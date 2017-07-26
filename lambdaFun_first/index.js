@@ -18,6 +18,10 @@ exports.handler = function(event,context){
             let options = {};
             options.speechText = "Welcome to AmTran Skill. This is a test skill";
             options.repromptText = "Again to ask for AmTran skill";
+
+            options.cardTitle = "AmTran Card Title";
+            options.cardContent = "AmTran Card Content Test";
+
             options.endSession = false;
 
             context.succeed(buildResponse(options));
@@ -52,6 +56,9 @@ exports.handler = function(event,context){
                 } else {
                   options.speechText = "Unknow Product type";
                 }
+
+                options.cardTitle = "AmTran Card Title";
+                options.cardContent = "AmTran Card Content Test" + name;
 
                 options.endSession = true;
                 context.succeed(buildResponse(options));
@@ -93,6 +100,25 @@ function buildResponse(options){
                 text: options.repromptText
             }
         };
+    }
+
+    if(options.cardTitle) {
+        response.response.card = {
+            type: "Simple",
+            title: options.cardTitle,
+            content: options.cardContent
+        }
+    }
+
+    if(options.imageUrl) {
+        response.response.card.type = "Standard";
+        response.response.card.text = options.cardContent;
+        response.response.card.image = {
+            smallImageUrl: options.imageUrl,
+            largeImageUrl: options.imageUrl
+        };
+    } else {
+        response.response.card.content = options.cardContent;
     }
 
     return response;

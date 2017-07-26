@@ -9,6 +9,9 @@ $ node index.js
 //How to use blocking and none-blocking methods
 //How to export models. 
 
+[Alexa Simulator]
+https://echosim.io/
+
 
 
 1) 3 types of requests
