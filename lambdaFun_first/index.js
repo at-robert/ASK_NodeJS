@@ -62,6 +62,22 @@ exports.handler = function(event,context){
 
                 options.endSession = true;
                 context.succeed(buildResponse(options));
+            } else if(request.intent.name === "AMAZON.HelpIntent") {
+            
+                options.cardTitle = "AmTran Card Title";
+                options.cardContent = "AmTran Card Content Test Help";
+                
+                options.speechText = "AmTran help function";
+                options.endSession = true;
+                context.succeed(buildResponse(options));
+            } else if(request.intent.name === "AMAZON.StopIntent") {
+            
+                options.cardTitle = "AmTran Card Title";
+                options.cardContent = "AmTran Card Content Test Stop";
+                
+                options.speechText = "AmTran bye bye";
+                options.endSession = true;
+                context.succeed(buildResponse(options));
             }
             else {
                 // context.fail("Unknow intent");
