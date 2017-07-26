@@ -1,0 +1,13 @@
+[Speech Synthesis Makeup Language]
+SSML (Reference https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
+
+* You can use amazon developer portal and the use Voice simulator to test your SSML to see how Alexa would pronunce the word
+
+1) AWS CLI setup
+  $ pip install awscli
+  >> Create a user and give permissions at IAM Management console (In order to upload code over command line)
+  $ aws configure 
+
+  $ rm -rf lambda_upload.zip 
+  $ zip -r lambda_upload.zip index.js
+  $ aws lambda update-function-code --function-name AmTranSkill --zip-file fileb://lambda_upload.zip

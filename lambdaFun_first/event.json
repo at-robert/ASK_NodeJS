@@ -16,10 +16,10 @@
       "slots": {
         "AMT_PRODUCT": {
           "name": "AMT_PRODUCT",
-          "value": "sound bar"
+          "value": "speaker"
         }
       },
-      "name": "GetAmTranSkill"
+      "name": "AskAmTran"
     },
     "type": "IntentRequest",
     "requestId": "request5678"
