@@ -6,8 +6,23 @@ SSML (Reference https://developer.amazon.com/public/solutions/alexa/alexa-skills
 1) AWS CLI setup
   $ pip install awscli
   >> Create a user and give permissions at IAM Management console (In order to upload code over command line)
+  user name: alexarob
   $ aws configure 
+
+  region: us-east-1
+  format: json
 
   $ rm -rf lambda_upload.zip 
   $ zip -r lambda_upload.zip index.js
   $ aws lambda update-function-code --function-name AmTranSkill --zip-file fileb://lambda_upload.zip
+
+[Mocha test framework]
+$ npm install -g mocha
+$ npm install -g chai
+
+$ npm install --save-dev mocha
+$ npm install --save-dev chai
+
+
+[NOTICE]
+repromptText should be set when session is end

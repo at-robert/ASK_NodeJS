@@ -5,6 +5,10 @@ var http = require('http');
 exports.handler = function(event,context){
 
     try{
+        if(process.env.NODE_DEBUG_EN) {
+            console.log("[DEBUG_LOG] Request:\n" + JSON.stringify(event,null,2));
+        }
+
         var request = event.request;
 
         //request.type
@@ -16,7 +20,7 @@ exports.handler = function(event,context){
 
         if(request.type === "LaunchRequest"){
             let options = {};
-            options.speechText = "Welcome to AmTran Skill. This is a test skill";
+            options.speechText = "AmTran is ready";
             options.repromptText = "Again to ask for AmTran skill";
 
             options.cardTitle = "AmTran Card Title";
@@ -27,8 +31,9 @@ exports.handler = function(event,context){
             context.succeed(buildResponse(options));
 
         } else if(request.type === "IntentRequest") {
-            let options = {};
+            
             if(request.intent.name === "GetAmTranSkill") {
+                let options = {};
                 options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future"; 
                 
                 // get string back URL json file
@@ -42,42 +47,17 @@ exports.handler = function(event,context){
                 //     }
                 // });
 
+                options.cardTitle = "AmTran Card Title";
+                options.cardContent = "AmTran Card Content Test Get";
                 options.endSession = true;
                 context.succeed(buildResponse(options));
 
             } else if(request.intent.name === "AskAmTran") {
-                let name =  request.intent.slots.AMT_PRODUCT.value;
-                if( name === "sound bar") {
-                  options.speechText = "Sound bar is a kind of audio product which provide better sound quality for the home theater system";
-                } else if (name === "speaker") {
-                  options.speechText = "Speaker is a kind of portable audio product";
-                } else if (name === "TV") {
-                  options.speechText = "TV is a kind of display product which can play video signal";
-                } else {
-                  options.speechText = "Unknow Product type";
-                }
-
-                options.cardTitle = "AmTran Card Title";
-                options.cardContent = "AmTran Card Content Test" + name;
-
-                options.endSession = true;
-                context.succeed(buildResponse(options));
+                handleAmtSkillIntent(request,context);
             } else if(request.intent.name === "AMAZON.HelpIntent") {
-            
-                options.cardTitle = "AmTran Card Title";
-                options.cardContent = "AmTran Card Content Test Help";
-                
-                options.speechText = "AmTran help function";
-                options.endSession = true;
-                context.succeed(buildResponse(options));
+                handleHelpIntent(request, context);
             } else if(request.intent.name === "AMAZON.StopIntent") {
-            
-                options.cardTitle = "AmTran Card Title";
-                options.cardContent = "AmTran Card Content Test Stop";
-                
-                options.speechText = "AmTran bye bye";
-                options.endSession = true;
-                context.succeed(buildResponse(options));
+                handleStopIntent(request,context);
             }
             else {
                 // context.fail("Unknow intent");
@@ -102,18 +82,18 @@ function buildResponse(options){
         version: "1.0",
         response: {
             outputSpeech: {
-                type: "PlainText",
-                text: options.speechText
+                type: "SSML",
+                ssml: "<speak>"+options.speechText+"</speak>"
             },
             shouldEndSession: options.endSession
         }
     };
 
     if(options.repromptText){
-        response.response.repromptText = {
+        response.response.reprompt = {
             outputSpeech: {
-                type: "PlainText",
-                text: options.repromptText
+                type: "SSML",
+                ssml: "<speak>"+options.repromptText+"</speak>"
             }
         };
     }
@@ -174,4 +154,45 @@ function getQuote(callback){
     req.on('error', function(err) {
         callback('',err);
     });
+}
+
+function handleAmtSkillIntent(request,context) {
+    let options = {};
+
+    let name =  request.intent.slots.AMT_PRODUCT.value; 
+    if(( name === "sound bar") || ( name === "soundbar")) {
+      options.speechText = "Sound bar is a kind of audio product which provide better sound quality for the home theater system";
+    } else if (name === "speaker") {
+      options.speechText = "Speaker is a kind of portable audio product";
+    } else if ((name === "TV") || (name === "t.v.")) {
+      options.speechText = "TV is a kind of display product which can play video signal";
+    } else {
+      options.speechText = "Unknow Product type";
+    }   
+    options.cardTitle = "AmTran Card Title";
+    options.cardContent = "AmTran Card Content Test" + name;    
+    options.endSession = true;
+    context.succeed(buildResponse(options));
+}
+
+function handleHelpIntent(request,context) {
+    let options = {};
+
+    options.cardTitle = "AmTran Card Title";
+    options.cardContent = "AmTran Card Content Test Help";
+    
+    options.speechText = "AmTran help function";
+    options.endSession = true;
+    context.succeed(buildResponse(options));    
+}
+
+function handleStopIntent(request,context) {
+    let options = {};
+    
+    options.cardTitle = "AmTran Card Title";
+    options.cardContent = "AmTran Card Content Test Stop";
+    
+    options.speechText = "AmTran Stop function";
+    options.endSession = true;
+    context.succeed(buildResponse(options));    
 }
