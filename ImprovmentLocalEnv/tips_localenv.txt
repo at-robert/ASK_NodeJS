@@ -10,7 +10,7 @@ STEPS:
 1) To make sure the setting in event.json to be modified correctly.
 
 2) Lambda local setup (https://github.com/ashiina/lambda-local)
-  >> npm install -g lambda-local
+$ npm install -g lambda-local
 
 3) Local testing command (To switch to the source code folder in advance)
-   >> lambda-local -l index.js -h handler -e event.json
+$ lambda-local -l index.js -h handler -e event.json
