@@ -155,6 +155,39 @@ describe('All intents', function() {
 
     });
 
+    describe(`Test AskAmTran error`, function() {
+
+        before(function(done) {
+          event.request.intent = {};
+          event.session.attributes = {};
+          event.request.type = 'IntentRequest';
+          event.request.intent.name = 'AskAmTran';
+          event.request.intent.slots = {
+            AMT_PRODUCT: {
+              name: 'AMT_PRODUCT',
+              value: 'xx'
+            }
+          };
+          ctx.done = done;
+          lambdaToTest.handler(event , ctx);
+        });
+
+       it('valid response', function() {
+         validRsp(ctx, {
+           endSession: false
+         });
+       });
+
+       it('valid outputSpeech', function() {
+        expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/I don't know what is xx please try a different one/);
+       });
+    
+      //  it('valid repromptSpeech', function() {
+      //  expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/Again to ask for AmTran skill/);
+      //  });
+
+    });
+
     describe(`Test AMAZON.HelpIntent`, function() {
 
         before(function(done) {

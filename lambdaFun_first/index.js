@@ -160,6 +160,8 @@ function handleAmtSkillIntent(request,context) {
     let options = {};
 
     let name =  request.intent.slots.AMT_PRODUCT.value; 
+
+    options.endSession = true;
     if(( name === "sound bar") || ( name === "soundbar")) {
       options.speechText = "Sound bar is a kind of audio product which provide better sound quality for the home theater system";
     } else if (name === "speaker") {
@@ -167,11 +169,17 @@ function handleAmtSkillIntent(request,context) {
     } else if ((name === "TV") || (name === "t.v.")) {
       options.speechText = "TV is a kind of display product which can play video signal";
     } else {
-      options.speechText = "Unknow Product type";
+      options.speechText = "I don't know what is " + name + " please try a different one";
+      options.endSession = false;
     }   
+
+    if(options.endSession === false) {
+        options.repromptText = "Again to ask for AmTran skill";
+    }
+    
     options.cardTitle = "AmTran Card Title";
     options.cardContent = "AmTran Card Content Test" + name;    
-    options.endSession = true;
+    
     context.succeed(buildResponse(options));
 }
 
