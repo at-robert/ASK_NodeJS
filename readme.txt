@@ -126,6 +126,10 @@ https://echosim.io/
    >> npm install -g mocha
    >> npm install -g chai
 
+NOTE:
+# To run test.js for the auto-test
+$ mocha test 
+
 12) Flask installation
    >> pip install flask
 

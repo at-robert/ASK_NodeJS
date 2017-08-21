@@ -1,0 +1,5 @@
+ControlLight Turn {LightState} the light
+ControlLight Turn the light {LightState}
+
+Alexa, ask Ameba Controller to turn on
+Alexa, ask Ameba Controller to turn off

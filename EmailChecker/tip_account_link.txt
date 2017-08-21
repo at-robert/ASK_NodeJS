@@ -1,0 +1,15 @@
+[Email Checker with account linking]
+
+Android/IOS Skill App < ------ > (Web service : (OAuth) authetication -> services)
+
+Google API OAuth:
+https://developers.google.com/identity/protocols/OAuth2
+
+1. To create GMail api project for obtaining OAuth credential (Client id, sercert key)
+2. To obtain access token 
+ a. To create an new skill for email Checker
+ b. To create an new AWS lambda function
+
+
+ Coding:
+ 

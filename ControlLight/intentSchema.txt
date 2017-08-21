@@ -1,0 +1,13 @@
+{
+   "intents": [
+      {
+         "intent": "ControlLight",
+         "slots": [
+            {
+               "name": "LightState",
+               "type": "LIGHT_STATE"
+            }
+         ]
+      }
+   ]
+}
