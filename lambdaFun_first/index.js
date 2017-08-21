@@ -19,17 +19,7 @@ exports.handler = function(event,context){
         */
 
         if(request.type === "LaunchRequest"){
-            let options = {};
-            options.speechText = "AmTran is ready";
-            options.repromptText = "Again to ask for AmTran skill";
-
-            options.cardTitle = "AmTran Card Title";
-            options.cardContent = "AmTran Card Content Test";
-
-            options.endSession = false;
-
-            context.succeed(buildResponse(options));
-
+            handleLanuchIntent(request,context);
         } else if(request.type === "IntentRequest") {
             
             if(request.intent.name === "GetAmTranSkill") {
@@ -154,6 +144,18 @@ function getQuote(callback){
     req.on('error', function(err) {
         callback('',err);
     });
+}
+
+function handleLanuchIntent(request,context) {
+    let options = {};
+    options.speechText = "AmTran is ready";
+    options.repromptText = "Again to ask for AmTran skill";
+
+    options.cardTitle = "AmTran Card Title";
+    options.cardContent = "AmTran Card Content Test";
+
+    options.endSession = false;
+    context.succeed(buildResponse(options));
 }
 
 function handleAmtSkillIntent(request,context) {
