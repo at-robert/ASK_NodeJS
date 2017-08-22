@@ -1,0 +1,4 @@
+# To check how many hits for a certain food item
+$ grep '"apples.* raw' food_db.json | wc -l
+
+$ grep '"orange' food_db.json | wc -l
