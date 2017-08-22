@@ -1,4 +1,6 @@
 GetNutritionInfo how many calories are in {FoodItem}
+GetNutritionInfo to tell about {FoodItem}
+GetNutritionInfo to say {FoodItem}
 
 GetNextEventIntent more information
 GetNextEventIntent more
