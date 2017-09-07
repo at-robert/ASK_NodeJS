@@ -113,7 +113,7 @@ describe('All intents', function() {
      });
 
      it('valid outputSpeech', function() {
-      expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/AmTran is ready/);
+      expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/Hello new friends, please tell me your name and we will start register/);
      });
     
      it('valid repromptSpeech', function() {

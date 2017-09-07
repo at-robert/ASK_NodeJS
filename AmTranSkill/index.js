@@ -24,7 +24,8 @@ exports.handler = function(event,context){
             
             if(request.intent.name === "GetAmTranSkill") {
                 let options = {};
-                options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future"; 
+                // options.speechText = "Thanks for opening AmTran skill, there are many other I can do in the future"; 
+                options.speechText = "Hello new friends, please tell me your name and we will start register"; 
                 
                 // get string back URL json file
                 // getQuote(function(quote,err) {
@@ -148,7 +149,8 @@ function getQuote(callback){
 
 function handleLanuchIntent(request,context) {
     let options = {};
-    options.speechText = "AmTran is ready";
+    // options.speechText = "AmTran is ready";
+    options.speechText = "Hello new friends, please tell me your name and we will start register"; 
     options.repromptText = "Again to ask for AmTran skill";
 
     options.cardTitle = "AmTran Card Title";

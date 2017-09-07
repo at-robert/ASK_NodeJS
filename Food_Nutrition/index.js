@@ -287,7 +287,7 @@ intentHandlers['GetNextEventIntent'] = function(request,session,response,slots) 
 };
 
 intentHandlers['AMAZON.StopIntent'] = function(request,session,response,slots) {
-  response.speechText  = `Good Bye. `;
+  response.speechText  = `See You. `;
   response.shouldEndSession = true;
   response.done();
 };

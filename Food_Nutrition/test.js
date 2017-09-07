@@ -238,7 +238,7 @@ describe('All intents', function() {
          });
 
          it('valid outputSpeech', function() {
-           expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/Good Bye./);
+           expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/See You./);
          });
 
          //it('valid reprompt', function() {
